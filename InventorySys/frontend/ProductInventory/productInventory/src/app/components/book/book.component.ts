@@ -84,9 +84,32 @@ export class BookComponent implements OnInit{
       })
     }
   }
-  onEditById(bookrow:any){}
+  onEditById(bookrow:any){
+    this.menuType = false;
+    this.bookModel.id = bookrow.id;
+    this.bookForm.controls['name'].setValue(bookrow.name)
+    this.bookForm.controls['price'].setValue(bookrow.price)
+    this.bookForm.controls['dept_id'].setValue(bookrow.dept_id)
+  }
 
-  editbook(){}
+  editbook(){
+    if(this.bookForm.valid){
+      this.bookModel.name = this.bookForm.value.name;
+      this.bookModel.price = this.bookForm.value.price;
+      this.bookModel.dept_id = this.bookForm.value.dept_id;
+      this.service.updateBook(this.bookModel.id,this.bookModel).subscribe({
+        next:res=>{
+          alert("Book updated sucessfully.")
+          this.loadBook()
+          this.bookForm.reset()
+        },
+        error:err=>{
+          alert("Data not updated.")
+          console.log(err);
+        }
+      })
+    }
+  }
 
 
 
