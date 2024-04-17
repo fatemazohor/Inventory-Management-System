@@ -6,11 +6,7 @@ var connection = mysql.createConnection({
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE
-    // port: 3306,
-    // host: "localhost",
-    // user: "root",
-    // password: "1234",
-    // database: "inventory_management"
+   
 });
 
 connection.connect((err) => {

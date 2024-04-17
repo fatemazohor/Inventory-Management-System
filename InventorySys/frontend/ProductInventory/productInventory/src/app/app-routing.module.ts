@@ -6,6 +6,9 @@ import { LoginLayoutComponent } from './components/login-layout/login-layout.com
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MainWrapperComponent } from './template/main-wrapper/main-wrapper.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { WarehousesComponent } from './components/warehouses/warehouses.component';
+import { ProductsComponent } from './components/products/products.component';
 
 const routes: Routes = [
   {path:'inventory',component:AppLayoutComponent,
@@ -14,6 +17,9 @@ const routes: Routes = [
       // add other routes
       {path:"book",component:BookComponent},
       {path:"dashboard",component:MainWrapperComponent},
+      {path:"category",component:CategoriesComponent},
+      {path:"warehouse",component:WarehousesComponent},
+      {path:"product",component:ProductsComponent},
     ]
   },
   {path:"login",

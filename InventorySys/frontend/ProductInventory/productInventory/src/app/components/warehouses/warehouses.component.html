@@ -17,25 +17,16 @@
                 <tr>
                     <th scope="col">SI</th>
                     <th scope="col">Id</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Category</th>
+                    <th scope="col">Warehouse</th>
                     <th scope="col">Action</th>
 
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let row of books; index as i">
+                <tr *ngFor="let row of warehouse; index as i">
                     <td>{{i+1}}</td>
                     <td>{{row.id}}</td>
-                    <td>{{row.name}}</td>
-                    <td>{{row.price}}</td>
-                    <td><span [ngSwitch]="row.dept_id">
-                            <span *ngSwitchCase="1">Programming</span>
-                            <span *ngSwitchCase="2">UI/UX</span>
-                        </span>
-
-                    </td>
+                    <td>{{row.wname}}</td>
                     <td>
 
                         <div class="btn-group">
@@ -43,7 +34,7 @@
                                 <fa-icon [icon]="editicon" style="color: #5c34d5;"></fa-icon></a>
 
 
-                            <a class="btn" (click)="deleteBook(row.id)">
+                            <a class="btn" (click)="deleteWarehouse(row.id)">
                                 <fa-icon [icon]="fatrash" style="color: #d53449;"></fa-icon></a>
                         </div>
                     </td>
@@ -57,10 +48,6 @@
 
     <!-- Model Form -->
 
-    <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button> -->
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -75,26 +62,12 @@
                 </div>
                 <div class="modal-body">
 
-                    <form [formGroup]="bookForm">
+                    <form [formGroup]="wareForm">
                         <div class="mb-3">
-                            <label class="form-label">Book Name</label>
-                            <input type="text" class="form-control" formControlName="name">
+                            <label class="form-label">Warehouse Name</label>
+                            <input type="text" class="form-control" formControlName="wname">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Price</label>
-                            <input type="text" class="form-control" formControlName="price">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Category</label>
-                            <select class="form-select form-select-sm" formControlName="dept_id">
-                                <option selected>Open this select menu</option>
-                                <option value="1">Programming</option>
-                                <option value="2">UI/UX</option>
-
-                            </select>
-                            <!-- <input type="text" class="form-control" formControlName="dept_id" >                         -->
-                        </div>
-
+                        
                     </form>
 
                 </div>
@@ -104,12 +77,12 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                         <div *ngIf=" menuType == true">
-                            <button type="submit" class="btn btn-success" [disabled]="bookForm.invalid"
+                            <button type="submit" class="btn btn-success" [disabled]="wareForm.invalid"
                                 (click)="onSubmit()" data-bs-dismiss="modal">Submit</button>
                         </div>
                         <div *ngIf="menuType == false">
-                            <button type="submit" class="btn btn-warning" [disabled]="bookForm.invalid"
-                                (click)="editbook()" data-bs-dismiss="modal">Update</button>
+                            <button type="submit" class="btn btn-warning" [disabled]="wareForm.invalid"
+                                (click)="editWarehouse()" data-bs-dismiss="modal">Update</button>
                         </div>
                     </div>
                 </div>

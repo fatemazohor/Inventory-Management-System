@@ -16,6 +16,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProductsComponent } from './components/products/products.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { WarehousesComponent } from './components/warehouses/warehouses.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginLayoutComponent,
     BookComponent,
     LoginFormComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProductsComponent,
+    CategoriesComponent,
+    WarehousesComponent
   ],
   imports: [
     BrowserModule,
