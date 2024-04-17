@@ -1,5 +1,6 @@
 const http = require("http");
 const app = require('./index');
+const cors = require('cors');
 
 const port = 3001;
 
