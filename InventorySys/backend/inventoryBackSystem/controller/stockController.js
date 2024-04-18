@@ -1,8 +1,8 @@
 const connection = require('../connection');
 
-// get all product
+// get all stock
 const findAll = (req,res,next)=>{
-    var query = "select * from products";
+    var query = "select * from stocks";
     connection.query(query,(err,result)=>{
         if(!err){
             return res.status(200).json(result);
@@ -11,13 +11,13 @@ const findAll = (req,res,next)=>{
         }
     })
 }
-// get all product
+// get all stock
 const findByKeyword = (req,res,next)=>{
     const value = req.query.value;
     if(value != null){
         console.log("keyword "+value)
-    var query = "select * from products where pcode like CONCAT('%', ?, '%') or pname like CONCAT('%', ?, '%') or price like CONCAT('%', ?, '%')";
-    connection.query(query,[value,value,value],(err,result)=>{
+    var query = "select * from stocks where quantity like CONCAT('%', ?, '%') or productid like CONCAT('%', ?, '%') or warehouseid like CONCAT('%', ?, '%') or updatedate like CONCAT('%', ?, '%')";
+    connection.query(query,[value,value,value,value],(err,result)=>{
         if(!err){
             return res.status(200).json(result);
         }else{
@@ -31,14 +31,14 @@ const findByKeyword = (req,res,next)=>{
     }
     
 }
-// get product by id
+// get stocks by id
 const findById = async(req,res,next)=>{
     const id = req.params.id;
-    var query = "select * from products where id=?";
+    var query = "select * from stocks where id=?";
     connection.query(query,[id],(err,results)=>{
         if(!err){
             if(results == null){
-                return res.status(400).json({message:"Product id does not match."});
+                return res.status(400).json({message:"stocks id does not match."});
 
             }
             return res.status(200).json(results)
@@ -50,14 +50,14 @@ const findById = async(req,res,next)=>{
     
 }
     
-// save product
+// save stocks
 const save=(req,res,next)=>{
     const currentDate = new Date();
-    let product = req.body;
-    var query = "insert into products(pcode, pname, pcate,price,createdate) values(?,?,?,?,?)";
-    connection.query(query,[product.pcode,product.pname,product.pcate,product.price,currentDate],(err,results)=>{
+    let stocks = req.body;
+    var query = "insert into stocks(quantity, productid, warehouseid,updatedate) values(?,?,?,?)";
+    connection.query(query,[stocks.quantity,stocks.productid,stocks.warehouseid,currentDate],(err,results)=>{
         if(!err){
-            return res.status(200).json({message:"Product added sucessfully"});
+            return res.status(200).json({message:"stocks added sucessfully"});
         }else{
             return res.status(500).json(err);
         }
@@ -67,16 +67,17 @@ const save=(req,res,next)=>{
 }
 // update
 const updateById = (req,res,next)=>{
+    const currentDate = new Date();
     const id = req.params.id;
-    let product = req.body;
-    var query = " update products set pcode=?, pname=?, pcate=? , price=? where id=?";
-    connection.query(query,[product.pcode,product.pname,product.pcate,product.price,id],(err,results)=>{
+    let stocks = req.body;
+    var query = " update stocks set quantity=?, productid=?, warehouseid=?, updatedate=? where id=?";
+    connection.query(query,[stocks.quantity,stocks.productid,stocks.warehouseid,currentDate,id],(err,results)=>{
         if(!err){
             if(results.affectedRows ==0){
-                return res.status(400).json({message:"Product id does not match."});
+                return res.status(400).json({message:"stocks id does not match."});
 
             }
-            return res.status(200).json({message:"Product updated sucessfully."})
+            return res.status(200).json({message:"stocks updated sucessfully."})
         }
         else{
             return res.status(500).json(err);
@@ -87,14 +88,14 @@ const updateById = (req,res,next)=>{
 //delete
 const deleteById =(req,res,next)=>{
     const id = req.params.id;
-    var query = "delete from products where id=?";
+    var query = "delete from stocks where id=?";
     connection.query(query,[id],(err,results)=>{
         if(!err){
             if(results.affectedRows ==0){
-                return res.status(404).json({message:"Product id does not match."});
+                return res.status(404).json({message:"stocks id does not match."});
 
             }
-            return res.status(200).json({message:"Product deleted sucessfully."})
+            return res.status(200).json({message:"stocks deleted sucessfully."})
         }
         else{
             return res.status(500).json(err);

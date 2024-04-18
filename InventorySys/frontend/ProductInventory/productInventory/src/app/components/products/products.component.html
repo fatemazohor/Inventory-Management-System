@@ -12,6 +12,11 @@
     <!-- <a href="/stylecategories/addform" class="btn btn-sm btn-primary">Create New</a> -->
 
     <div class="py-2">
+        <form [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
+        <input type="text" class="form-control" placeholder="Search..." formControlName="searchValue"/>
+        </form>
+    </div>
+    <div class="py-2">
         <table class="table table-striped text-center">
             <thead>
                 <tr>

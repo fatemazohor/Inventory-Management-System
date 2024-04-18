@@ -56,6 +56,10 @@ export class ProductService {
   findProductById(id:number):Observable<Product>{
     return this.http.get<Product>(`${this.baseUrl}/products/${id}`);
   }
+
+  findProductByKeyword(keyoword:string):Observable<Product[]>{
+    return this.http.get<Product[]>(`${this.baseUrl}/products/search?value=${keyoword}`);
+  }
   createProduct(product:Product):Observable<Product>{
     return this.http.post<Product>(`${this.baseUrl}/products`,product);
   }

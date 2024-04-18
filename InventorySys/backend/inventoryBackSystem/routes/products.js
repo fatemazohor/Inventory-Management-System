@@ -9,6 +9,9 @@ const productController = require('../controller/productController');
 
 // get request
 router.get('/',productController.findAll);
+
+// get request
+router.get('/search',productController.findByKeyword);
 // get request for single object
 router.get('/:id',productController.findById);
 // post request

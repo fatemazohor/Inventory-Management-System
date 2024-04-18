@@ -11,14 +11,15 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductsComponent implements OnInit {
 
-  title: string = "Warehouses list";
-  title2: string = "Warehouses Entry Form";
+  title: string = "Products list";
+  title2: string = "Products Entry Form";
   menuType: boolean = true;
   //font awesome
   fatrash = faTrash
   editicon = faPenToSquare
 
   product: Product[] = []
+  searchProduct:Product[]=[]
   productForm!: FormGroup
   productModel: Product = new Product();
 
@@ -28,12 +29,39 @@ export class ProductsComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
+  
+
 
   ngOnInit(): void {
     this.initProductForm();
     this.loadProduct();
     this.loadCategory();
   }
+
+
+// search form create
+searchKeyword:string = '';
+  searchForm = this.formBuilder.nonNullable.group({
+    searchValue:'',
+  })
+
+  //search function
+  onSearchSubmit():void{
+
+    console.log("searchValue",this.searchForm.value);
+    this.searchKeyword = this.searchForm.value.searchValue ?? '';
+    console.log('keyoword', this.searchKeyword);
+    this.service.findProductByKeyword(this.searchKeyword).subscribe({
+      next:res=>{
+        this.searchProduct = res;
+        this.product = this.searchProduct;
+        console.log(res)
+      },error:err=>{
+        console.log(err);
+      }
+    });
+  }
+  //search
 
   // all category
   loadCategory(){
