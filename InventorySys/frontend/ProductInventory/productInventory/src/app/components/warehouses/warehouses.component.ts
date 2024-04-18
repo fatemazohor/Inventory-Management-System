@@ -90,7 +90,7 @@ export class WarehousesComponent implements OnInit{
   editWarehouse(){
     if(this.wareForm.valid){
       this.wareModel.wname = this.wareForm.value.wname;
-      this.service.updateBook(this.wareModel.id,this.wareModel).subscribe({
+      this.service.updateWarehoue(this.wareModel.id,this.wareModel).subscribe({
         next:res=>{
           alert("Warehouse updated sucessfully.")
           this.loadWarehouse()

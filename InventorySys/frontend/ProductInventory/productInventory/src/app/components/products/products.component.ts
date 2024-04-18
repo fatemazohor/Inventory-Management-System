@@ -19,7 +19,7 @@ export class ProductsComponent implements OnInit {
   editicon = faPenToSquare
 
   product: Product[] = []
-  searchProduct:Product[]=[]
+  searchProduct: Product[] = []
   productForm!: FormGroup
   productModel: Product = new Product();
 
@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
-  
+
 
 
   ngOnInit(): void {
@@ -39,24 +39,24 @@ export class ProductsComponent implements OnInit {
   }
 
 
-// search form create
-searchKeyword:string = '';
+  // search form create
+  searchKeyword: string = '';
   searchForm = this.formBuilder.nonNullable.group({
-    searchValue:'',
+    searchValue: '',
   })
 
   //search function
-  onSearchSubmit():void{
+  onSearchSubmit(): void {
 
-    console.log("searchValue",this.searchForm.value);
+    console.log("searchValue", this.searchForm.value);
     this.searchKeyword = this.searchForm.value.searchValue ?? '';
     console.log('keyoword', this.searchKeyword);
     this.service.findProductByKeyword(this.searchKeyword).subscribe({
-      next:res=>{
+      next: res => {
         this.searchProduct = res;
         this.product = this.searchProduct;
         console.log(res)
-      },error:err=>{
+      }, error: err => {
         console.log(err);
       }
     });
@@ -64,13 +64,13 @@ searchKeyword:string = '';
   //search
 
   // all category
-  loadCategory(){
+  loadCategory() {
     this.service.findAllCategory().subscribe({
-      next:res=>{
+      next: res => {
         this.cate = res;
         console.log(res);
       },
-      error:err=>{
+      error: err => {
         console.log(err);
       }
     })
@@ -129,7 +129,7 @@ searchKeyword:string = '';
     }
   }
 
-  onEditById(datarow:any){
+  onEditById(datarow: any) {
     this.menuType = false;
     this.productModel.id = datarow.id;
     this.productForm.controls['pname'].setValue(datarow.pname)
@@ -138,19 +138,19 @@ searchKeyword:string = '';
     this.productForm.controls['price'].setValue(datarow.price)
   }
 
-  editProduct(){
-    if(this.productForm.valid){
+  editProduct() {
+    if (this.productForm.valid) {
       this.productModel.pname = this.productForm.value.pname;
       this.productModel.pcode = this.productForm.value.pcode;
       this.productModel.pcate = this.productForm.value.pcate;
       this.productModel.price = this.productForm.value.price;
-      this.service.updateProduct(this.productModel.id,this.productModel).subscribe({
-        next:res=>{
+      this.service.updateProduct(this.productModel.id, this.productModel).subscribe({
+        next: res => {
           alert("Product updated sucessfully.")
           this.loadProduct()
           this.productForm.reset()
         },
-        error:err=>{
+        error: err => {
           alert("Data not updated.")
           console.log(err);
         }

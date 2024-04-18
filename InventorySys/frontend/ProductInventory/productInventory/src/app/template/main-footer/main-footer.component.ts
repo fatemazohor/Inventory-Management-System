@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faHeart} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-main-footer',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './main-footer.component.css'
 })
 export class MainFooterComponent {
+
+  hearticon = faHeart;
 
 }

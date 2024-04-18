@@ -9,6 +9,10 @@ import { MainWrapperComponent } from './template/main-wrapper/main-wrapper.compo
 import { CategoriesComponent } from './components/categories/categories.component';
 import { WarehousesComponent } from './components/warehouses/warehouses.component';
 import { ProductsComponent } from './components/products/products.component';
+import { StatusComponent } from './components/status/status.component';
+import { VendorsComponent } from './components/vendors/vendors.component';
+import { CustomersComponent } from './components/customers/customers.component';
+import { StocksComponent } from './components/stocks/stocks.component';
 
 const routes: Routes = [
   {path:'inventory',component:AppLayoutComponent,
@@ -19,7 +23,11 @@ const routes: Routes = [
       {path:"dashboard",component:MainWrapperComponent},
       {path:"category",component:CategoriesComponent},
       {path:"warehouse",component:WarehousesComponent},
+      {path:"status",component:StatusComponent},
+      {path:"vendor",component:VendorsComponent},
+      {path:"customer",component:CustomersComponent},
       {path:"product",component:ProductsComponent},
+      {path:"stock",component:StocksComponent},
     ]
   },
   {path:"login",

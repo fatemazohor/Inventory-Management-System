@@ -19,6 +19,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductsComponent } from './components/products/products.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { WarehousesComponent } from './components/warehouses/warehouses.component';
+import { StatusComponent } from './components/status/status.component';
+import { VendorsComponent } from './components/vendors/vendors.component';
+import { CustomersComponent } from './components/customers/customers.component';
+import { StocksComponent } from './components/stocks/stocks.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import { WarehousesComponent } from './components/warehouses/warehouses.componen
     RegisterComponent,
     ProductsComponent,
     CategoriesComponent,
-    WarehousesComponent
+    WarehousesComponent,
+    StatusComponent,
+    VendorsComponent,
+    CustomersComponent,
+    StocksComponent
   ],
   imports: [
     BrowserModule,
