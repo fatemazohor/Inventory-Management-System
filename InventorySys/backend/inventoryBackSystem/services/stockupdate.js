@@ -6,9 +6,9 @@ async function saveStock(dataid, dataquantity) {
         const stocks = await getStockById(dataid);
         const currentDate = new Date();
         if (stocks) {
-            const id = stocks.id;
-            const query = "UPDATE stocks SET quantity=?, productid=?,  updatedate=? WHERE id=?";
-            connection.query(query, [stocks.quantity + dataquantity, stocks.productid,currentDate, id], (err, results) => {
+            const id = stocks.productid;
+            const query = "UPDATE stocks SET quantity=?, updatedate=? WHERE productid=?";
+            connection.query(query, [parseFloat(stocks.quantity) + parseFloat(dataquantity),currentDate, id], (err, results) => {
                 if (!err) {
                     if (results.affectedRows === 0) {
                         throw { status: 400, message: "Stock ID does not match." };
@@ -32,12 +32,43 @@ async function saveStock(dataid, dataquantity) {
         throw error;
     }
 }
-
-
-
-async function getStockById(stockid) {
+async function decreaseStock(dataid, dataquantity) {
     try {
-        const id = stockid;
+        const stocks = await getStockById(dataid);
+        const currentDate = new Date();
+        if (stocks) {
+            const id = stocks.productid;
+            const query = "UPDATE stocks SET quantity=?, updatedate=? WHERE productid=?";
+            connection.query(query, [parseFloat(stocks.quantity) - parseFloat(dataquantity),currentDate, id], (err, results) => {
+                if (!err) {
+                    if (results.affectedRows === 0) {
+                        throw { status: 400, message: "Stock ID does not match." };
+                    } else {
+                        console.log("Stock updated successfully.");
+                    }
+                } else {
+                    throw err;
+                }
+            });
+        } else {
+            const query = "INSERT INTO stocks (quantity, productid, warehouseid, updatedate) VALUES (?, ?, ?, ?)";
+            connection.query(query, [-dataquantity, dataid, 1, currentDate], (err, results) => {
+                if (err) {
+                    throw err; // Throw error if query execution fails
+                }
+                console.log("Stock added successfully.");
+            });
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+
+async function getStockById(idproduct) {
+    try {
+        const id = idproduct;
         const query = "SELECT * FROM stocks WHERE productid=?";
         
         // Wrap the database query in a promise
@@ -47,7 +78,7 @@ async function getStockById(stockid) {
                     reject(err);
                 } else {
                     if (results.length === 0) {
-                        reject({ status: 400, message: "Stock ID does not exist." });
+                        resolve(null); // Return null if stock ID does not exist
                     } else {
                         resolve(results[0]); // Return only the first result
                     }
@@ -59,5 +90,6 @@ async function getStockById(stockid) {
     }
 }
 module.exports={
-    saveStock
+    saveStock,
+    decreaseStock
 }

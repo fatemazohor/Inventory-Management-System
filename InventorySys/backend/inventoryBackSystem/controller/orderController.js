@@ -17,8 +17,8 @@ const findByKeyword = (req,res,next)=>{
     const value = req.query.value;
     if(value != null){
         console.log("keyword "+value)
-    var query = "select * from order_details where pcode like CONCAT('%', ?, '%') or pname like CONCAT('%', ?, '%') or price like CONCAT('%', ?, '%')";
-    connection.query(query,[value,value,value],(err,result)=>{
+    var query = "select * from order_details where productid like CONCAT('%', ?, '%')";
+    connection.query(query,[value],(err,result)=>{
         if(!err){
             return res.status(200).json(result);
         }else{

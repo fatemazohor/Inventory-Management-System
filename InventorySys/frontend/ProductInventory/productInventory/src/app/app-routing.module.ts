@@ -13,6 +13,8 @@ import { StatusComponent } from './components/status/status.component';
 import { VendorsComponent } from './components/vendors/vendors.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { StocksComponent } from './components/stocks/stocks.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { DeliveryComponent } from './components/delivery/delivery.component';
 
 const routes: Routes = [
   {path:'inventory',component:AppLayoutComponent,
@@ -28,6 +30,8 @@ const routes: Routes = [
       {path:"customer",component:CustomersComponent},
       {path:"product",component:ProductsComponent},
       {path:"stock",component:StocksComponent},
+      {path:"order",component:OrdersComponent},
+      {path:"delivery",component:DeliveryComponent},
     ]
   },
   {path:"login",

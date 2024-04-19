@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { Book, Warehouse, Category, Product, Status, Customer, Vendor, Stock } from '../model/inventory.model';
+import { Book, Warehouse, Category, Product, Status, Customer, Vendor, Stock, Order, Delivery } from '../model/inventory.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -157,6 +157,51 @@ export class ProductService {
   }
   deleteStock(id:number):Observable<void>{
     return this.http.delete<void>(`${this.baseUrl}/stocks/${id}`);
+  }
+
+  //-----------------order
+  findAllOrder():Observable<Order[]>{
+    return this.http.get<Order[]>(`${this.baseUrl}/orders/`);
+  }
+  findOrderById(id:number):Observable<Order>{
+    return this.http.get<Order>(`${this.baseUrl}/orders/${id}`);
+  }
+
+  findOrderByKeyword(keyoword:string):Observable<Order[]>{
+    return this.http.get<Order[]>(`${this.baseUrl}/orders/search?value=${keyoword}`);
+  }
+  createOrder(data:Order):Observable<Order>{
+    return this.http.post<Order>(`${this.baseUrl}/orders`,data);
+  }
+
+  updateOrder(id:number,data:Order):Observable<Order>{
+    return this.http.patch<Order>(`${this.baseUrl}/orders/update/${id}`,data);
+  }
+  deleteOrder(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/orders/${id}`);
+  }
+
+
+  //-----------------delivery
+  findAllDelivery():Observable<Delivery[]>{
+    return this.http.get<Delivery[]>(`${this.baseUrl}/delivery/`);
+  }
+  findDeliveryById(id:number):Observable<Delivery>{
+    return this.http.get<Delivery>(`${this.baseUrl}/delivery/${id}`);
+  }
+
+  findDeliveryByKeyword(keyoword:string):Observable<Delivery[]>{
+    return this.http.get<Delivery[]>(`${this.baseUrl}/delivery/search?value=${keyoword}`);
+  }
+  createDelivery(data:Delivery):Observable<Delivery>{
+    return this.http.post<Delivery>(`${this.baseUrl}/delivery`,data);
+  }
+
+  updateDelivery(id:number,data:Delivery):Observable<Delivery>{
+    return this.http.patch<Delivery>(`${this.baseUrl}/delivery/update/${id}`,data);
+  }
+  deleteDelivery(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.baseUrl}/delivery/${id}`);
   }
   //----------------- demo ------------
   //book

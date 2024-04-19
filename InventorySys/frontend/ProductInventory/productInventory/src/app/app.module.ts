@@ -23,6 +23,8 @@ import { StatusComponent } from './components/status/status.component';
 import { VendorsComponent } from './components/vendors/vendors.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { StocksComponent } from './components/stocks/stocks.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { DeliveryComponent } from './components/delivery/delivery.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { StocksComponent } from './components/stocks/stocks.component';
     StatusComponent,
     VendorsComponent,
     CustomersComponent,
-    StocksComponent
+    StocksComponent,
+    OrdersComponent,
+    DeliveryComponent
   ],
   imports: [
     BrowserModule,

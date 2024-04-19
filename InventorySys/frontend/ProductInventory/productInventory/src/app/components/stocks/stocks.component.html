@@ -5,10 +5,10 @@
     <br>
     <p></p>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary py-2" (click)=" menuType=true" data-toggle="modal"
+    <!-- <button type="button" class="btn btn-primary py-2" (click)=" menuType=true" data-toggle="modal"
         data-target="#exampleModal">
         Create New
-    </button>
+    </button> -->
     <!-- <a href="/stylecategories/addform" class="btn btn-sm btn-primary">Create New</a> -->
 
     <!-- <div class="py-2">
@@ -26,7 +26,7 @@
                     <th scope="col">Quantiy</th>
                     <th scope="col">Warehouse</th>
                     <th scope="col">Update Date</th>
-                    <th scope="col">Action</th>
+                    <!-- <th scope="col">Action</th> -->
 
                 </tr>
             </thead>
@@ -58,7 +58,7 @@
                         </span>
                     </td>
                     <td>{{row.updatedate | date:'medium'}}</td>
-                    <td>
+                    <!-- <td>
 
                         <div class="btn-group">
                             <a class="btn" (click)="onEditById(row)" data-toggle="modal" data-target="#exampleModal">
@@ -68,7 +68,7 @@
                             <a class="btn" (click)="deleteStock(row.id)">
                                 <fa-icon [icon]="fatrash" style="color: #d53449;"></fa-icon></a>
                         </div>
-                    </td>
+                    </td> -->
 
                 </tr>
 
@@ -133,7 +133,7 @@
                         </div>
                         <div *ngIf="menuType == false">
                             <button type="submit" class="btn btn-warning" [disabled]="stockForm.invalid"
-                                (click)="editStock" data-bs-dismiss="modal">Update</button>
+                                (click)="editStock()" data-bs-dismiss="modal">Update</button>
                         </div>
                     </div>
                 </div>

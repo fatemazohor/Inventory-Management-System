@@ -9,6 +9,7 @@ const vendorRoute = require('./routes/vendors');
 const customerRoute = require('./routes/customers');
 const stockRoute = require('./routes/stock');
 const orderRoute = require('./routes/order');
+const deliveryRoute = require('./routes/delivery');
 const cors = require('cors');
 
 const app = express();
@@ -27,5 +28,6 @@ app.use('/categories', categoriesRoute);
 app.use('/products', productsRoute);
 app.use('/stocks', stockRoute);
 app.use('/orders', orderRoute);
+app.use('/delivery', deliveryRoute);
 
 module.exports = app;

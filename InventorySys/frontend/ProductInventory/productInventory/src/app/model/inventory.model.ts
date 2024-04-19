@@ -37,7 +37,7 @@ export class Customer {
 export class Vendor {
     id: number = 0
     address?: string
-    cell?: string 
+    cell?: string
     contact_person?: string
     company?: string
     email?: string
@@ -65,5 +65,32 @@ export class Stock {
     quantity?: number
     productid?: number
     warehouseid?: number
-    updatedate?:  Date
+    updatedate?: Date
+}
+//stocks 
+export class Order {
+
+    id: number = 0
+    quantity?: number
+    productid?: number
+    statusid?: number
+    vendorid?: number
+    unit_price?: number
+    total_price?: number
+    createdate?: Date
+
+
+}
+//stocks 
+export class Delivery {
+
+    id: number = 0
+    quantity?: number
+    productid?: number
+    statusid?: number
+    customerid?: number
+    unit_price?: number
+    total_price?: number
+    deliverydate?: Date
+    createdate?: Date
 }
