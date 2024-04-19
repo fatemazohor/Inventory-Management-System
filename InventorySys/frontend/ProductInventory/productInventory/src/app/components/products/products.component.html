@@ -21,7 +21,7 @@
             <thead>
                 <tr>
                     <th scope="col">SI</th>
-                    <th scope="col">Id</th>
+                    <!-- <th scope="col">Id</th> -->
                     <th scope="col">Code</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Category</th>
@@ -34,19 +34,11 @@
             <tbody>
                 <tr *ngFor="let row of product; index as i">
                     <td>{{i+1}}</td>
-                    <td>{{row.id}}</td>
+                    <!-- <td>{{row.id}}</td> -->
                     <td>{{row.pcode}}</td>
                     <td>{{row.pname}}</td>
-                    <td>
-                        <span [ngSwitch]="row.pcate">
-                            <span *ngSwitchCase="1">Graphic Card</span>
-                            <span *ngSwitchCase="2">Hard Disk</span>
-                            <span *ngSwitchCase="3">Motherboard</span>
-                            <span *ngSwitchCase="4">Processor</span>
-                            <span *ngSwitchCase="5">SSD</span>
-                            <!-- <span *ngSwitchCase="2">Hard Disk</span> -->
-                            <span *ngSwitchDefault="">{{row.pcate}}</span>
-                        </span>
+                    <td>{{filterCategoriesData(row.pcate)}}
+                        
                     </td>
                     <td>{{row.price}}</td>
                     <td>{{row.createdate | date:'medium'}}</td>

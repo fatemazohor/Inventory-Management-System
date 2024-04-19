@@ -106,17 +106,22 @@ const deleteById =(req,res,next)=>{
     })
 
 }
+
 // get latest 10 delivery
 const findLatest = (req,res,next)=>{
-    var query = "select * from delivery_details order by id desc limit 10";
+    // var query = "select * from delivery_details order by id desc limit 10";
+    var query = "select * from delivery_details";
     connection.query(query,(err,result)=>{
         if(!err){
+            console.log(result);
             return res.status(200).json(result);
+
         }else{
             return res.status(500).json(err);
         }
     })
 }
+
 // get total money
 const findTotalSale = (req,res,next)=>{
     var query = "select sum(total_price) from delivery_details";

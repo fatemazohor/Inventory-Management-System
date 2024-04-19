@@ -42,7 +42,7 @@
                     <td>
                         {{filterCustomerData(row.customerid)}}
                     </td>
-                    <td>{{row.createdate | date:'short'}}</td>
+                    <td>{{row.deliverydate | date:'short'}}</td>
                     <td [ngClass]="{'badge ':true,
                              'bg-danger': row.statusid == 1
                                             ,'bg-primary': row.statusid == 2,

@@ -14,6 +14,10 @@ router.get('/',deliveryController.findAll);
 router.get('/search',deliveryController.findByKeyword);
 // get request for single object
 router.get('/:id',deliveryController.findById);
+// get request for latest 10
+router.get('/latest',deliveryController.findLatest);
+// get request for total
+router.get('/total',deliveryController.findTotalSale);
 // post request
 router.post('/',deliveryController.save);
 

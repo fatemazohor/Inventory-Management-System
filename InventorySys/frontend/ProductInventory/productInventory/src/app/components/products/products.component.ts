@@ -159,7 +159,16 @@ export class ProductsComponent implements OnInit {
   }
 
 
+  filterCategoriesData(dataid:any):any{
 
+    let category:Category[] = this.cate.filter(pro=>pro.id == dataid);
+
+    let dataValue = category;
+    console.log("category",dataValue[0].cname
+    )
+    return dataValue[0].cname;
+
+  }
 
 
 }

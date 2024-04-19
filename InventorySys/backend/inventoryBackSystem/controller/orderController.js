@@ -106,6 +106,21 @@ const deleteById =(req,res,next)=>{
 
 }
 
+// get latest 10 delivery
+const findLatest = (req,res,next)=>{
+    var query = "select * from order_details order by id desc limit 10";
+    // var query = "select * from order_details";
+    connection.query(query,(err,result)=>{
+        if(!err){
+            console.log(result);
+            return res.status(200).json(result);
+
+        }else{
+            return res.status(500).json(err);
+        }
+    })
+}
+
 
 module.exports = {
     findAll,
@@ -113,5 +128,6 @@ module.exports = {
     save,
     updateById,
     deleteById,
-    findByKeyword
+    findByKeyword,
+    findLatest
 }
