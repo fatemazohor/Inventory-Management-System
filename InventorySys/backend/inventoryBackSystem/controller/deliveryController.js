@@ -3,6 +3,7 @@ const stockService = require('../services/stockupdate');
 
 // get all delivery
 const findAll = (req,res,next)=>{
+// var query = "select * from delivery_details order by id desc limit 10";
     var query = "select * from delivery_details";
     connection.query(query,(err,result)=>{
         if(!err){
@@ -106,11 +107,11 @@ const deleteById =(req,res,next)=>{
     })
 
 }
-// api don't work
+
 // get latest 10 delivery
 const findLatest = (req,res,next)=>{
-    // var query = "select * from delivery_details order by id desc limit 10";
-    var query = "select * from delivery_details";
+    var query = "select * from delivery_details order by id desc limit 10";
+    // var query = "select * from delivery_details";
     connection.query(query,(err,result)=>{
         if(!err){
             console.log(result);

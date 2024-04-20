@@ -12,10 +12,13 @@ router.get('/',orderController.findAll);
 
 // get request
 router.get('/search',orderController.findByKeyword);
+// get 10 latest
+router.get('/latest',orderController.findLatest);
+// get request for total
+router.get('/total',orderController.findTotalSale);
 // get request for single object
 router.get('/:id',orderController.findById);
-// get 10 latest
-router.get('/table',orderController.findLatest);
+
 // post request
 router.post('/',orderController.save);
 

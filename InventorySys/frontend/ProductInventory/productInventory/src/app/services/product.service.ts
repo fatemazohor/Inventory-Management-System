@@ -163,6 +163,12 @@ export class ProductService {
   findAllOrder():Observable<Order[]>{
     return this.http.get<Order[]>(`${this.baseUrl}/orders/`);
   }
+  findLatestOrder():Observable<Order[]>{
+    return this.http.get<Order[]>(`${this.baseUrl}/orders/latest`);
+  }
+  findTotalOrder():Observable<Order[]>{
+    return this.http.get<Order[]>(`${this.baseUrl}/orders/total`);
+  }
   findOrderById(id:number):Observable<Order>{
     return this.http.get<Order>(`${this.baseUrl}/orders/${id}`);
   }
@@ -185,6 +191,12 @@ export class ProductService {
   //-----------------delivery
   findAllDelivery():Observable<Delivery[]>{
     return this.http.get<Delivery[]>(`${this.baseUrl}/delivery/`);
+  }
+  findLatestDelivery():Observable<Delivery[]>{
+    return this.http.get<Delivery[]>(`${this.baseUrl}/delivery/latest`);
+  }
+  findTotalDelivery():Observable<Delivery[]>{
+    return this.http.get<Delivery[]>(`${this.baseUrl}/delivery/total`);
   }
   findDeliveryById(id:number):Observable<Delivery>{
     return this.http.get<Delivery>(`${this.baseUrl}/delivery/${id}`);

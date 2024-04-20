@@ -25,9 +25,9 @@
         <!-- small box -->
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>150</h3>
+            <h3>{{totalSaleOrder | currency: 'BDT' : 'code' : '4.2-2'}}</h3>
 
-            <p>New Orders</p>
+            <p>Total Purchase</p>
           </div>
           <div class="icon">
             <i class="ion ion-bag"></i>
@@ -40,9 +40,9 @@
         <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
-            <h3>53<sup style="font-size: 20px">%</sup></h3>
+            <h3>{{totalSaleDelivery | currency: 'BDT' : 'code' : '4.2-2'}}</h3>
 
-            <p>Bounce Rate</p>
+            <p>Total Sales</p>
           </div>
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
@@ -55,9 +55,9 @@
         <!-- small box -->
         <div class="small-box bg-warning">
           <div class="inner">
-            <h3>44</h3>
+            <h3>{{revenue}}<sup style="font-size: 20px">%</sup></h3>
 
-            <p>User Registrations</p>
+            <p>Revenue</p>
           </div>
           <div class="icon">
             <i class="ion ion-person-add"></i>
@@ -147,8 +147,73 @@
           </div>
           <!-- /.card-body -->
           <div class="card-footer clearfix">
-            <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-            <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
+            <a href="javascript:void(0)" class="btn btn-sm btn-info float-left" routerLink="/inventory/order">Place New Order</a>
+            <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right" routerLink="/inventory/order">View All Orders</a>
+          </div>
+          <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+        <!-- TABLE: LATEST Delivery -->
+        <div class="card">
+          <div class="card-header border-transparent">
+            <h3 class="card-title">Latest Delivery</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table m-0">
+                <thead>
+                  <tr>
+                    <th scope="col">SI</th>
+                    <!-- <th scope="col">Id</th> -->
+                    <th scope="col">Product Code</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Create Date</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of delivery; index as i">
+                    <td>{{i+1}}</td>
+                    <!-- <td>{{row.id}}</td> -->
+                    <td>{{filterProductData(row.productid)}}</td>
+                    <td>{{row.quantity}}</td>
+                    <td>{{row.unit_price}}</td>
+                    <td>
+                      {{filterCustomerData(row.customerid)}}
+                    </td>
+                    <td>{{row.createdate | date:'short'}}</td>
+                    <td [ngClass]="{'badge ':true,
+                                 'bg-danger': row.statusid == 1
+                                ,'bg-primary': row.statusid == 2,
+                                'bg-success': row.statusid == 3,
+                                'bg-warning': row.statusid == 4,
+                                }">
+                      {{filterStatusData(row.statusid)}}
+                    </td>
+
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+            <!-- /.table-responsive -->
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer clearfix">
+            <a href="javascript:void(0)" class="btn btn-sm btn-info float-left" routerLink="/inventory/delivery">Place New Delivery</a>
+            <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right" routerLink="/inventory/delivery">View All Delivery</a>
           </div>
           <!-- /.card-footer -->
         </div>
