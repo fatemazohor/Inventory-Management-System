@@ -106,7 +106,7 @@ const deleteById =(req,res,next)=>{
     })
 
 }
-
+// api don't work
 // get latest 10 delivery
 const findLatest = (req,res,next)=>{
     // var query = "select * from delivery_details order by id desc limit 10";
