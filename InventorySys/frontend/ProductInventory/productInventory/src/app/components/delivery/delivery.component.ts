@@ -9,7 +9,7 @@ import { ProductService } from '../../services/product.service';
   templateUrl: './delivery.component.html',
   styleUrl: './delivery.component.css'
 })
-export class DeliveryComponent implements OnInit{
+export class DeliveryComponent implements OnInit {
 
   title: string = "Delivery list";
   title2: string = "Delivery Entry Form";
@@ -55,22 +55,22 @@ export class DeliveryComponent implements OnInit{
 
     console.log("searchValue", this.searchForm.value);
     this.searchKeyword = this.searchForm.value.searchValue ?? '';
-    let idproduct:string ='';
-    if(this.searchKeyword){
+    let idproduct: string = '';
+    if (this.searchKeyword) {
       // take product code to change it to id
-    let productcode:Product[] = this.product.filter(pro=>pro.pcode?.toUpperCase() == this.searchKeyword.toUpperCase());
+      let productcode: Product[] = this.product.filter(pro => pro.pcode?.toUpperCase() == this.searchKeyword.toUpperCase());
 
-    
-    let dataValue = productcode;
+
+      let dataValue = productcode;
       idproduct = (dataValue[0].id).toString() ?? '';
-    
-    //......id
 
-    }else{
+      //......id
+
+    } else {
       idproduct = this.searchKeyword;
 
     }
-    
+
 
     // console.log('keyoword', dataValue[0].id);
     this.service.findDeliveryByKeyword(idproduct).subscribe({
@@ -112,39 +112,39 @@ export class DeliveryComponent implements OnInit{
   }
 
   // all status
-  loadStatus(){
+  loadStatus() {
     this.service.findAllStatus().subscribe({
-      next:res=>{
+      next: res => {
         this.status = res;
         console.log(res);
       },
-      error:err=>{
+      error: err => {
         console.log(err);
       }
     })
   }
 
   // all customer
-  loadCustomer(){
+  loadCustomer() {
     this.service.findAllCustomer().subscribe({
-      next:res=>{
+      next: res => {
         this.customer = res;
         console.log(res);
       },
-      error:err=>{
+      error: err => {
         console.log(err);
       }
     })
   }
 
   // all delivery
-  loadDelivery(){
+  loadDelivery() {
     this.service.findAllDelivery().subscribe({
-      next:res=>{
+      next: res => {
         this.delivery = res;
         console.log(res);
       },
-      error:err=>{
+      error: err => {
         console.log(err);
       }
     })
@@ -217,18 +217,18 @@ export class DeliveryComponent implements OnInit{
   }
 
   //filter for product name
-  filterProductData(dataid:any):any{
+  filterProductData(dataid: any): any {
 
-    let productcode:Product[] = this.product.filter(pro=>pro.id == dataid);
+    let productcode: Product[] = this.product.filter(pro => pro.id == dataid);
 
     let dataValue = productcode;
     // console.log("product code",dataValue[0].pcode)
     return dataValue[0].pcode;
 
   }
-  filterCustomerData(dataid:any):any{
+  filterCustomerData(dataid: any): any {
 
-    let customer:Customer[] = this.customer.filter(pro=>pro.id == dataid);
+    let customer: Customer[] = this.customer.filter(pro => pro.id == dataid);
 
     let dataValue = customer;
     // console.log("Vendor",dataValue[0].company)
@@ -236,9 +236,9 @@ export class DeliveryComponent implements OnInit{
 
   }
   //filter status
-  filterStatusData(dataid:any):any{
+  filterStatusData(dataid: any): any {
 
-    let status:Status[] = this.status.filter(pro=>pro.id == dataid);
+    let status: Status[] = this.status.filter(pro => pro.id == dataid);
 
     let dataValue = status;
     // console.log("product code",dataValue[0].status)
@@ -246,25 +246,29 @@ export class DeliveryComponent implements OnInit{
 
   }
 
-  updateUnitPrice(){
+  updateUnitPrice() {
     let idproduct = this.deliveryForm.value.productid;
 
-    let productcode:Product[] = this.product.filter(pro=>pro.id == idproduct);
+    let productcode: Product[] = this.product.filter(pro => pro.id == idproduct);
+
 
     let dataValue = productcode;
-    console.log("update price ",dataValue[0].price
-    )
-    this.deliveryForm.controls['unit_price'].setValue(dataValue[0].price);
-    
+    let unitPrice = dataValue[0].price;
+    if (unitPrice != undefined) {
+      let newUnitPrice = unitPrice * (110 / 100);
+      console.log("update price ", dataValue[0].price
+      )
+      this.deliveryForm.controls['unit_price'].setValue(newUnitPrice.toFixed(2));
+    }
 
   }
 
-  calculate(){
+  calculate() {
     let quantity = this.deliveryForm.value.quantity;
     let price = this.deliveryForm.value.unit_price;
 
-    let total = quantity*price;
-    console.log("total price",total)
+    let total = quantity * price;
+    console.log("total price", total)
     this.deliveryForm.controls['total_price'].setValue(total);
   }
 

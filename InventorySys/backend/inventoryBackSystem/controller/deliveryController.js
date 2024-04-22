@@ -18,7 +18,7 @@ const findAll = (req,res,next)=>{
 const findByKeyword = (req,res,next)=>{
     const value = req.query.value;
     if(value != null){
-        console.log("keyword "+value)
+        // console.log("keyword "+value)
     var query = "select * from delivery_details where productid like CONCAT('%', ?, '%')";
     connection.query(query,[value],(err,result)=>{
         if(!err){
@@ -114,7 +114,7 @@ const findLatest = (req,res,next)=>{
     // var query = "select * from delivery_details";
     connection.query(query,(err,result)=>{
         if(!err){
-            console.log(result);
+            // console.log(result);
             return res.status(200).json(result);
 
         }else{

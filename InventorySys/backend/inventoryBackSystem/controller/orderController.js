@@ -112,7 +112,7 @@ const findLatest = (req,res,next)=>{
     // var query = "select * from order_details";
     connection.query(query,(err,result)=>{
         if(!err){
-            console.log(result);
+            // console.log(result);
             return res.status(200).json(result);
 
         }else{
