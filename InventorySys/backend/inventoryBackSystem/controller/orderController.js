@@ -121,7 +121,7 @@ const findLatest = (req,res,next)=>{
     })
 }
 
-// get total money
+// get total money for purchase products
 const findTotalSale = (req,res,next)=>{
     var query = "select sum(total_price) from order_details";
     connection.query(query,(err,result)=>{
