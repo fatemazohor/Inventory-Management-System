@@ -245,7 +245,7 @@ export class DeliveryComponent implements OnInit {
     return dataValue[0].status;
 
   }
-// unit price to set on data forms
+// unit price to set on data forms.
   updateUnitPrice() {
     let idproduct = this.deliveryForm.value.productid;
 
